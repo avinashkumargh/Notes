@@ -1,0 +1,10 @@
+
+
+Add option to include(on a card)-
+    list box
+    images
+    canvas to draw if possible
+
+add folder creation (grouping cards)
+add pinning
+
