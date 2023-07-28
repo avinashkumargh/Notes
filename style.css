@@ -8,16 +8,17 @@
 
 :root{
     /* CSS HEX */
-    --canvas-color: #000000ff;
-    --button-color: #171717ff;
-    --page-color: #3f3f3fff;
-    --text-color: #DDD0C8/* #FAF5E9 */;
-    --navajo-white: #ffdeadff;
-    --atomic-tangerine: #f08e64ff;
-    --ash-gray: #c6ccb2ff;
-    --background-color: #202124;
-    --color: #e8eaed;
-    --border-color: #acacac;
+    --canvas-color: rgb(0, 0, 0);
+    --button-color: rgb(23, 23, 23);
+    --page-color: rgb(63, 63, 63);
+    --text-color: rgb(232, 234, 237)/* #DDD0C8 *//* #FAF5E9 */;
+    --navajo-white: rgb(255, 222, 173);
+    --atomic-tangerine: rgb(240, 142, 100);
+    --ash-gray: rgb(198, 204, 178);
+    --background-color: rgb(32, 33, 36);
+    --color: rgb(232, 234, 237);
+    --border-color: rgba(172, 172, 172, 0.5);
+    --light-background: rgb(87, 85, 85);
 }
 
 .main{
@@ -30,10 +31,10 @@
 
 
 .topnav{
-    height: 6vh;
+    height: 7vh;
     width: 100%;
     background-color: var(--background-color);
-    border: var(--border-color) solid 2px;
+    border: var(--border-color) solid 1px;
     border-left: none;
     border-right: none;
     display: flex;
@@ -43,7 +44,7 @@
 
 .search-wrapper{
     border-radius: 10px;
-    background-color: rgb(87, 85, 85);
+    background-color: var(--light-background);
     width: 50vw;
     display: flex;
     justify-content: center;
@@ -52,7 +53,7 @@
 }
 
 .search-items{
-    background-color: rgb(87, 85, 85);
+    background-color: var(--light-background);
     color: var(--text-color);
 }
 
@@ -64,6 +65,11 @@
     font-size: 1.2rem;
     padding-left: 10px;
     font-family: 'Product Sans', sans-serif;
+
+}
+
+.search-box::placeholder{
+    color: var(--ash-gray);
 }
 
 
@@ -97,7 +103,41 @@
     width: 100%;
     flex-grow: 1;
     background-color: var(--background-color);
+    display: flex;
+    flex-direction: column;
+    max-height: 90vh;
+    overflow-y: auto;
+}
 
+
+.card-body-container{
+    border: solid red 2px;
+    width: 100% - 40px;
+    height: 100%;
+    flex-grow: 1;
+    border-radius: 20px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-section{
+    border: solid red 2px;
+    width: 100%-40px;
+    height: 100%;
+    border-radius: 20px;
+    margin: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;    
+}
+
+.card{
+    border: solid red 2px;
+    width: 240px;
+    height: 105px;
+    border-radius: 20px;
+    margin: 20px;
 }
 
 .bottombar{
@@ -105,6 +145,6 @@
     height: 3vh;
     width: 100%;
     background-color: var(--background-color);
-    border: var(--border-color) solid 2px;
+    border: var(--border-color)  solid 2px;
     border-radius: 0px 0px 10px 10px;
 }
