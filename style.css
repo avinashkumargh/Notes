@@ -1,4 +1,10 @@
-@import url('https://fonts.cdnfonts.com/css/product-sans');
+@font-face {
+    font-family: 'Product Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/productsans/v5/HYvgU2fE2nRJvZ5JFAumwegdm0LZdjqr5-oayXSOefg.woff2) format('woff2');
+  }
+
 
 *{
     margin: 0;
@@ -16,6 +22,7 @@
     --atomic-tangerine: rgb(240, 142, 100);
     --ash-gray: rgb(198, 204, 178);
     --background-color: rgb(32, 33, 36);
+    --background-color-transparent: rgba(32, 33, 36, 0.5);
     --color: rgb(232, 234, 237);
     --border-color: rgba(172, 172, 172, 0.5);
     --light-background: rgb(87, 85, 85);
@@ -145,9 +152,71 @@
     background-color: blue;
 }
 
-/* .card:hover{
-    animation: expand-card 2s forwards;
-} */
+
+.editor-container{
+    position: fixed;
+    background-color: var(--background-color-transparent);
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-editor{
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    width: 600px;
+    min-height: 20vh;
+    max-height: 90vh;
+    z-index: 101;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    /* margin-top: -250px; */
+}
+
+.editor-title-entry{
+    background-color: var(--background-color);
+    color: var(--text-color);
+    height: 6vh;
+    max-height: 6vh;
+    border-radius: 8px 8px 0 0;
+    border: none;
+    border-bottom: var(--border-color) 2px solid;
+    outline: none;
+    overflow-y: hidden;
+    font-size: 1.375rem;
+    padding: 16px;
+    font-weight: 400;
+    font-family: "Product Sans";
+}
+
+.editor-title-entry:empty:before{
+    content: attr(data-placeholder);
+    color: var(--border-color);
+}
+
+.editor-text-entry{
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-size: 1.2rem;
+    min-height: 16vh;
+    border: none;
+    outline: none;
+    overflow-y: auto;
+    max-height: 80vh;
+    font-weight: 300;
+    padding: 20px;
+    font-family: "Product Sans";
+}
+
+.editor-tools{
+    background-color: var(--background-color);
+    height: 4vh;
+    border-radius: 0 0 8px 8px;
+}
 
 
 .bottombar{

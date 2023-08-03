@@ -54,6 +54,18 @@ function getDragAfterelement(container, x, y){
     }, { offset: Number.NEGATIVE_INFINITY }).element
 }
 
+const editorCanvas = document.getElementById("editor-canvas")
+//editorCanvas.style.display = "none"
 
-
+document.addEventListener("keydown", (e) => {
+    if (e.key === "1") {
+        console.log(editorCanvas.style.display)
+        if (editorCanvas.style.display === ""){
+            editorCanvas.style.display = "none"
+        }
+        else{
+            editorCanvas.style.removeProperty("display")
+        }
+    }
+})
 
