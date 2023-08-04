@@ -55,7 +55,7 @@ function getDragAfterelement(container, x, y){
 }
 
 const editorCanvas = document.getElementById("editor-canvas")
-//editorCanvas.style.display = "none"
+editorCanvas.style.display = "none"
 
 document.addEventListener("keydown", (e) => {
     if (e.key === "1") {
