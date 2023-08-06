@@ -1,10 +1,13 @@
-const cards = document.querySelectorAll(".card")
+let cards = document.querySelectorAll(".card")
 const containers = document.querySelectorAll(".card-section")
 const cardContainerWrapper = document.getElementById("main-cont")
+const editorCanvas = document.getElementById("editor-canvas")
+
+let cardslist = [...cards]
+let containersList = [...containers]
 let mainCardContainer = document.getElementById("main-card-cont")
 
-
-cards.forEach(card => {
+function draggableCards(card){
     card.addEventListener('dragstart', ()=>{
         card.classList.add("dragging")
     })
@@ -12,9 +15,9 @@ cards.forEach(card => {
     card.addEventListener('dragend', ()=>{
         card.classList.remove("dragging")
     })
-})
+}
 
-containers.forEach(container => {
+function dragAcceptableContainers(container){
     container.addEventListener("dragover", e =>{
         e.preventDefault()
         const afterCard = getDragAfterelement(container, e.clientX, e.clientY)
@@ -27,7 +30,7 @@ containers.forEach(container => {
         }
 
     })
-})
+}
 
 
 function getDragAfterelement(container, x, y){
@@ -56,7 +59,16 @@ function getDragAfterelement(container, x, y){
     }, { offset: Number.NEGATIVE_INFINITY }).element
 }
 
-const editorCanvas = document.getElementById("editor-canvas")
+
+cards.forEach(card => {
+    draggableCards(card)
+})
+
+containers.forEach(container => {
+    dragAcceptableContainers(container)
+})
+
+
 editorCanvas.style.display = "none"
 
 document.addEventListener("keydown", (e) => {
@@ -70,10 +82,6 @@ document.addEventListener("keydown", (e) => {
         }
     }
 })
-
-
-
-
 
 function CreateCard(parentEle , title, text){
     let ele = document.createElement("div")
@@ -98,6 +106,11 @@ function CreateCard(parentEle , title, text){
     ele.appendChild(eleTools)
 
     parentEle.appendChild(ele)
+    
+    draggableCards(ele)
+    cardslist.push(ele)
+
+    return ele
 }
 
 
@@ -113,19 +126,21 @@ function createCardContainer(parent, cardName){
     ele.appendChild(eleHeader)
 
     parent.appendChild(ele)
+
+    dragAcceptableContainers(ele)
+    containersList.push(ele)
+
+    return ele
 }
 
 
-
-const all_cards = document.getElementsByClassName("card")
-console.log(all_cards)
 
 function openeditor(e){
     console.log(e, "Ele working")
 }
 
 let tampa = 0
-Array.prototype.forEach.call(all_cards, function(card) {
+Array.prototype.forEach.call(cards, function(card) {
     console.log(card)
     tampa = card
     //card.onclick = openeditor
@@ -133,5 +148,5 @@ Array.prototype.forEach.call(all_cards, function(card) {
 });
 
 
-CreateCard(mainCardContainer, "card1", "card1 text")
-createCardContainer(cardContainerWrapper, "This is the new created container")
+let newCard = CreateCard(mainCardContainer, "card1", "card1 text")
+let newContainer = createCardContainer(cardContainerWrapper, "This is the new created container")
