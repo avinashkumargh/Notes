@@ -6,5 +6,6 @@ Add option to include(on a card)-
     canvas to draw if possible
 
 add folder creation (grouping cards)
-add pinning
+add folder sorting
+add pinning(you can create class pinned)
 
