@@ -9,3 +9,5 @@ add folder creation (grouping cards)
 add folder sorting
 add pinning(you can create class pinned)
 
+add item deletion
+add folder deletion
