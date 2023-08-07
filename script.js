@@ -2,6 +2,7 @@ let cards = document.querySelectorAll(".card")
 const containers = document.querySelectorAll(".card-section")
 const cardContainerWrapper = document.getElementById("main-cont")
 const editorCanvas = document.getElementById("editor-canvas")
+const textEditor = document.getElementById("text-editor")
 
 let cardslist = [...cards]
 let containersList = [...containers]
@@ -12,6 +13,10 @@ let currentCardContainer = null
 editorCanvas.addEventListener('click', (event) => {
     if(event.target.id === "editor-canvas"){
         editorCanvas.style.display = "none"
+        currentCard.children[0].innerHTML = textEditor.children[0].innerHTML
+        currentCard.children[1].innerHTML = textEditor.children[1].innerHTML
+        textEditor.children[0].innerHTML = ""
+        textEditor.children[1].innerHTML = ""
     }
 })
 
@@ -79,24 +84,12 @@ containers.forEach(container => {
 
 editorCanvas.style.display = "none"
 
-document.addEventListener("keydown", (e) => {
-    if (e.key === "1") {
-        console.log(editorCanvas.style.display)
-        if (editorCanvas.style.display === ""){
-            editorCanvas.style.display = "none"
-        }
-        else{
-            editorCanvas.style.removeProperty("display")
-        }
-    }
-})
 
-
-function openEditor(cardcontainer){
-    currentCard = cardcontainer.target
+function openEditor(cardcontainer, title = "", text= ""){
     currentCardContainer = cardcontainer.target.parentElement
-    console.log(cardcontainer.target.parentElement)
     editorCanvas.style.removeProperty("display")
+    textEditor.children[0].innerHTML = title
+    textEditor.children[1].innerHTML = text
     //editorCanvas.style.display = "none"
 }
 
@@ -149,7 +142,7 @@ function createCardContainer(parent, cardName){
     //addEle.setAttribute("onclick", "openEditor()")
     addEle.addEventListener("click", (event)=>{
         currentCard = CreateCard(ele)
-        openEditor(event)
+        openEditor(event, "ook", "lets see")
     })
     
     ele.appendChild(addEle)
