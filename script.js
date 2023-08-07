@@ -72,9 +72,17 @@ function getDragAfterelement(container, x, y){
     }, { offset: Number.NEGATIVE_INFINITY }).element
 }
 
+function clickableCards(card){
+    card.addEventListener("click", (event)=>{
+        console.log(event.target, card.children)
+        currentCard = card
+        openEditor(card, card.children[0].innerHTML, card.children[1].innerHTML)
+    })
+}
 
 cards.forEach(card => {
     draggableCards(card)
+    clickableCards(card)
 })
 
 containers.forEach(container => {
@@ -86,7 +94,8 @@ editorCanvas.style.display = "none"
 
 
 function openEditor(cardcontainer, title = "", text= ""){
-    currentCardContainer = cardcontainer.target.parentElement
+    //currentCardContainer = cardcontainer.target.parentElement
+    //currentCardContainer = cardcontainer.parentElement
     editorCanvas.style.removeProperty("display")
     textEditor.children[0].innerHTML = title
     textEditor.children[1].innerHTML = text
@@ -94,7 +103,7 @@ function openEditor(cardcontainer, title = "", text= ""){
 }
 
 
-function CreateCard(parentEle , title, text){
+function CreateCard(parentEle , title= "", text= ""){
     let ele = document.createElement("div")
     ele.setAttribute("class", "card")
     ele.setAttribute("draggable", "true")
@@ -119,6 +128,7 @@ function CreateCard(parentEle , title, text){
     parentEle.appendChild(ele)
     
     draggableCards(ele)
+    clickableCards(ele)
     cardslist.push(ele)
 
     return ele
@@ -142,7 +152,7 @@ function createCardContainer(parent, cardName){
     //addEle.setAttribute("onclick", "openEditor()")
     addEle.addEventListener("click", (event)=>{
         currentCard = CreateCard(ele)
-        openEditor(event, "ook", "lets see")
+        openEditor(event)
     })
     
     ele.appendChild(addEle)

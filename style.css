@@ -176,6 +176,7 @@
     align-items: center;
     justify-content: center;
     font-size: 4rem;
+    user-select: none;
 }
 
 .card-title-entry{
