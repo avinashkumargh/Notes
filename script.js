@@ -6,6 +6,14 @@ const editorCanvas = document.getElementById("editor-canvas")
 let cardslist = [...cards]
 let containersList = [...containers]
 let mainCardContainer = document.getElementById("main-card-cont")
+let currentCard = null
+let currentCardContainer = null
+
+editorCanvas.addEventListener('click', (event) => {
+    if(event.target.id === "editor-canvas"){
+        editorCanvas.style.display = "none"
+    }
+})
 
 function draggableCards(card){
     card.addEventListener('dragstart', ()=>{
@@ -83,6 +91,16 @@ document.addEventListener("keydown", (e) => {
     }
 })
 
+
+function openEditor(cardcontainer){
+    currentCard = cardcontainer.target
+    currentCardContainer = cardcontainer.target.parentElement
+    console.log(cardcontainer.target.parentElement)
+    editorCanvas.style.removeProperty("display")
+    //editorCanvas.style.display = "none"
+}
+
+
 function CreateCard(parentEle , title, text){
     let ele = document.createElement("div")
     ele.setAttribute("class", "card")
@@ -117,7 +135,7 @@ function CreateCard(parentEle , title, text){
 function createCardContainer(parent, cardName){
     let ele = document.createElement("div")
     ele.setAttribute("class", "card-section")
-
+    
     let eleHeader = document.createElement("div")
     eleHeader.setAttribute("class", "card-group-name")
     eleHeader.setAttribute("contenteditable", "true")
@@ -125,27 +143,24 @@ function createCardContainer(parent, cardName){
 
     ele.appendChild(eleHeader)
 
+    let addEle = document.createElement("div")
+    addEle.setAttribute("class", "add-card")
+    addEle.innerHTML = "+"
+    //addEle.setAttribute("onclick", "openEditor()")
+    addEle.addEventListener("click", (event)=>{
+        currentCard = CreateCard(ele)
+        openEditor(event)
+    })
+    
+    ele.appendChild(addEle)
+    
     parent.appendChild(ele)
-
+    
     dragAcceptableContainers(ele)
     containersList.push(ele)
-
     return ele
 }
 
-
-
-function openeditor(e){
-    console.log(e, "Ele working")
-}
-
-let tampa = 0
-Array.prototype.forEach.call(cards, function(card) {
-    console.log(card)
-    tampa = card
-    //card.onclick = openeditor
-    card.setAttribute("onclick", "openeditor(tampa);")
-});
 
 
 let newCard = CreateCard(mainCardContainer, "card1", "card1 text")
