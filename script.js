@@ -23,12 +23,12 @@ editorCanvas.addEventListener('click', (event) => {
     }
 })
 
-/* editorTitle.addEventListener("keypress", (event)=>{
+editorTitle.addEventListener("keypress", (event)=>{
     if (event.key === "Enter"){
         event.preventDefault()
         editorText.focus()
     }
-}) */
+})
 
 function draggableCards(card){
     card.addEventListener('dragstart', ()=>{
