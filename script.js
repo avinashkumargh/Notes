@@ -3,6 +3,9 @@ const containers = document.querySelectorAll(".card-section")
 const cardContainerWrapper = document.getElementById("main-cont")
 const editorCanvas = document.getElementById("editor-canvas")
 const textEditor = document.getElementById("text-editor")
+const editorTitle = document.getElementById("editor-title")
+const editorText = document.getElementById("editor-text")
+
 
 let cardslist = [...cards]
 let containersList = [...containers]
@@ -19,6 +22,13 @@ editorCanvas.addEventListener('click', (event) => {
         textEditor.children[1].innerHTML = ""
     }
 })
+
+/* editorTitle.addEventListener("keypress", (event)=>{
+    if (event.key === "Enter"){
+        event.preventDefault()
+        editorText.focus()
+    }
+}) */
 
 function draggableCards(card){
     card.addEventListener('dragstart', ()=>{
@@ -96,6 +106,7 @@ editorCanvas.style.display = "none"
 function openEditor(cardcontainer, title = "", text= ""){
     //currentCardContainer = cardcontainer.target.parentElement
     //currentCardContainer = cardcontainer.parentElement
+    //createDynamicAnimation()
     editorCanvas.style.removeProperty("display")
     textEditor.children[0].innerHTML = title
     textEditor.children[1].innerHTML = text
@@ -168,3 +179,58 @@ function createCardContainer(parent, cardName){
 
 let newCard = CreateCard(mainCardContainer, "card1", "card1 text")
 let newContainer = createCardContainer(cardContainerWrapper, "This is the new created container")
+
+
+
+
+/* 
+
+let styleSheet = null;
+dynamicAnimation = (name,styles) => {
+    // Creating a style element
+    // To add the keyframes
+    if (!styleSheet){
+        styleSheet = document.createElement('style');
+        styleSheet.type = 'text/css';
+        document.head.appendChild(styleSheet);
+    }
+    // Adding The Keyframes
+    styleSheet.sheet.insertRule(`@keyframes ${name} {${styles}}`,
+    styleSheet.length
+    );
+
+}
+
+
+
+function createDynamicAnimation(card){
+    let left = currentCard.getBoundingClientRect().left
+    let top = currentCard.getBoundingClientRect().top
+    let right = currentCard.getBoundingClientRect().right
+    let bottom = currentCard.getBoundingClientRect().bottom
+    dynamicAnimation('newAnimation', "\
+        0%{\
+            position: absolute;\
+            top : '10px'\
+        }\
+        50%{\
+            position: absolute;\
+            top : '10px'\
+            transform : translateX(50%);\
+            border-radius : 50%;\
+        }\
+        75%{\
+            position: absolute;\
+            top : '10px'\
+            transform : translateX(25%);\
+            border-radius : 25%;\
+        }\
+        100%{\
+            position: absolute;\
+            transform : translateX(0%);\
+            border-radius : 0%;\
+        }"
+    );
+}
+
+textEditor.style.animation = 'newAnimation 3s infinite' */
